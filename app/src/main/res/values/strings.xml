@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Star Wars Universe</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="placeholder_text_profile">Заглушка для экрана \"Профиль\"</string>
+    <string name="placeholder_text_faves">Заглушка для экрана \"Избранное\"</string>
+    <string name="title_favourites">Избранное</string>
+    <string name="title_profile">Профиль</string>
+    <string name="title_movies">Фильмы</string>
+</resources>
