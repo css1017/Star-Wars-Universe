@@ -1,11 +1,13 @@
 package com.css101.starwarsuniverse.presentation.movies
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.css101.starwarsuniverse.databinding.FragmentMoviesBinding
+import com.css101.starwarsuniverse.domain.models.Film
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MoviesFragment : Fragment() {
@@ -23,8 +25,42 @@ class MoviesFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        vm.getMovies()
+        showLoading()
+        vm.movies.observe(viewLifecycleOwner) {
+            if (it.isEmpty()) {
+                showError()
+            } else hideLoading()
+            setAdapter(it)
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun setAdapter(movies: List<Film>) = with(binding) {
+        rvMovies.adapter = MoviesAdapter(movies) {}
+        rvMovies.adapter?.notifyDataSetChanged()
+    }
+
+    private fun showLoading() = with(binding) {
+        pbLoadingMovies.visibility = View.VISIBLE
+        tvErrorMovies.visibility = View.GONE
+
+    }
+
+    private fun hideLoading() = with(binding) {
+        pbLoadingMovies.visibility = View.GONE
+        tvErrorMovies.visibility = View.GONE
+    }
+
+    private fun showError() = with(binding) {
+        pbLoadingMovies.visibility = View.GONE
+        tvErrorMovies.visibility = View.VISIBLE
     }
 }

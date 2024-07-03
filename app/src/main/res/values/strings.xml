@@ -8,4 +8,9 @@
     <string name="title_favourites">Избранное</string>
     <string name="title_profile">Профиль</string>
     <string name="title_movies">Фильмы</string>
+    <string name="recieve_error">Не удалось загрузить данные, проверьте подключение к интернету</string>
+    <string name="characters">Персонажи</string>
+    <string name="other">Прочее</string>
+    <string name="planets">Планеты</string>
+    <string name="info">Информация</string>
 </resources>
