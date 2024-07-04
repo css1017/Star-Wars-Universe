@@ -7,12 +7,25 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    
-    <color name="pluto_dark">#FF616187</color>
-    <color name="pluto_light">#FF9E9E78</color>
-    <color name="neptune_dark">#FF5E3FE2</color>
-    <color name="neptune_light">#FFA1C01D</color>
-    <color name="tatooine_light">#FFFFCCCC</color>
-    <color name="tatooine_dark">#FF003333</color>
-    <color name="dagobah">#FF1DC999</color>
+
+    <color name="grey_dark">#2B2B2B</color>
+    <color name="grey_light">#3C3F41</color>
+
+    <color name="accent_dark">#2261bc</color>
+    <color name="bg_dark">#0c0c0c</color>
+    <color name="text_dark">#d9d9d9</color>
+    <color name="bg_accent_dark">#1d1e20</color>
+    <color name="bg_grey_1_dark">#2f3035</color>
+    <color name="bg_grey_2_dark">#3e3f43</color>
+    <color name="bg_grey_3_dark">#5e5f61</color>
+    <color name="text_accent_dark">#9f9f9f</color>
+
+    <color name="accent_light">#2261bc</color>
+    <color name="text_light">#262626</color>
+    <color name="bg_light">#0c0c0c</color>
+    <color name="bg_accent_light">#1d1e20</color>
+    <color name="bg_grey_1_light">#2f3035</color>
+    <color name="bg_grey_2_light">#3e3f43</color>
+    <color name="bg_grey_3_light">#5e5f61</color>
+    <color name="text_accent_light">#9f9f9f</color>
 </resources>

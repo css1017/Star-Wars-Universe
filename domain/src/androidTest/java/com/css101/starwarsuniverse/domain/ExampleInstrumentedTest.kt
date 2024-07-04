@@ -1,4 +1,4 @@
-package com.css101.starwarsuniverse.data.domain
+package com.css101.starwarsuniverse.domain
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
