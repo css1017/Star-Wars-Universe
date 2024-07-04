@@ -4,12 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_movies">
+    <include app:graph="@navigation/movies_navigation" />
 
     <fragment
         android:id="@+id/navigation_movies"
         android:name="com.css101.starwarsuniverse.presentation.movies.MoviesFragment"
         android:label="@string/title_movies"
-        tools:layout="@layout/fragment_movies" />
+        tools:layout="@layout/fragment_movies">
+        <action
+            android:id="@+id/action_movies_to_details"
+            app:destination="@id/movies_navigation">
+            <argument
+                android:name="episodeId"
+                app:argType="integer" />
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"

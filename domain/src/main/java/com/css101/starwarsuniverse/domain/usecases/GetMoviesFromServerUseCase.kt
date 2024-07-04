@@ -4,7 +4,7 @@ import com.css101.starwarsuniverse.domain.models.Film
 
 class GetMoviesFromServerUseCase {
 
-    fun execute(): List<Film> {
+    fun execute(): List<Film>? {
         return listOf(Film(
             title = "egestas",
             episodeId = 9176,

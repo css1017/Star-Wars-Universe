@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/movies_navigation"
+    app:startDestination="@id/navigation_details">
+
+    <fragment
+        android:id="@+id/navigation_details"
+        android:name="com.css101.starwarsuniverse.presentation.details.DetailsFragment"
+        android:label="Детали"
+        tools:layout="@layout/fragment_movie_details">
+        <action
+            android:id="@+id/action_details_to_planet"
+            app:destination="@id/navigation_planet">
+            <argument
+                android:name="planet"
+                app:argType="string" />
+        </action>
+        <argument
+            android:name="episodeId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_planet"
+        android:name="com.css101.starwarsuniverse.presentation.planet.PlanetFragment"
+        android:label="Планета"
+        tools:layout="@layout/fragment_planet">
+        <argument
+            android:name="planet"
+            app:argType="string" />
+    </fragment>
+</navigation>
