@@ -70,12 +70,13 @@
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCaracters"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:itemCount="15"
-                tools:listitem="@layout/item_persons" />
+                tools:listitem="@layout/item_characters" />
         </LinearLayout>
 
         <LinearLayout

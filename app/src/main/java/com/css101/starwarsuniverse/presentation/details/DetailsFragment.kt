@@ -1,4 +1,4 @@
-package com.css101.starwarsuniverse.presentation.movies
+package com.css101.starwarsuniverse.presentation.details
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -8,31 +8,35 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.css101.starwarsuniverse.databinding.FragmentMoviesBinding
-import com.css101.starwarsuniverse.domain.models.Film
+import androidx.navigation.fragment.navArgs
+import com.css101.starwarsuniverse.databinding.FragmentMovieDetailsBinding
+import com.css101.starwarsuniverse.domain.models.Person
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MoviesFragment : Fragment() {
+class DetailsFragment : Fragment() {
 
-    private var _binding: FragmentMoviesBinding? = null
+    private var _binding: FragmentMovieDetailsBinding? = null
     private val binding get() = _binding!!
-    private val vm by viewModel<MoviesViewModel>()
+    private val vm by viewModel<DetailsViewModel>()
     private lateinit var navController: NavController
+    private val args: DetailsFragmentArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMoviesBinding.inflate(inflater, container, false)
+        _binding = FragmentMovieDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = findNavController()
-        vm.getMovies()
+        vm.getCharacters(args.episodeId)
         showLoading()
-        vm.movies.observe(viewLifecycleOwner) {
+        binding.tvTitlePerson.text = args.episodeId.toString()
+        vm.characters.observe(viewLifecycleOwner) {
             if (it.isEmpty()) showError() else hideLoading()
             setAdapter(it)
         }
@@ -44,27 +48,27 @@ class MoviesFragment : Fragment() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun setAdapter(movies: List<Film>) = with(binding) {
-        rvMovies.adapter = MoviesAdapter(movies) {
-            val action = MoviesFragmentDirections.actionMoviesToDetails(it.episodeId)
+    private fun setAdapter(movies: List<Person>) = with(binding) {
+        rvCaracters.adapter = CharactersAdapter(movies) {
+            val action = DetailsFragmentDirections.actionDetailsToPlanet(it.homeWorld)
             navController.navigate(action)
         }
-        rvMovies.adapter?.notifyDataSetChanged()
+        rvCaracters.adapter?.notifyDataSetChanged()
     }
 
     private fun showLoading() = with(binding) {
-        pbLoadingMovies.visibility = View.VISIBLE
-        tvErrorMovies.visibility = View.GONE
+//        pbLoadingMovies.visibility = View.VISIBLE
+//        tvErrorMovies.visibility = View.GONE
 
     }
 
     private fun hideLoading() = with(binding) {
-        pbLoadingMovies.visibility = View.GONE
-        tvErrorMovies.visibility = View.GONE
+//        pbLoadingMovies.visibility = View.GONE
+//        tvErrorMovies.visibility = View.GONE
     }
 
     private fun showError() = with(binding) {
-        pbLoadingMovies.visibility = View.GONE
-        tvErrorMovies.visibility = View.VISIBLE
+//        pbLoadingMovies.visibility = View.GONE
+//        tvErrorMovies.visibility = View.VISIBLE
     }
 }
