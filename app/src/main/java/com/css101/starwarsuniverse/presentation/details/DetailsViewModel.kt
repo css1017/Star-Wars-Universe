@@ -5,11 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.css101.starwarsuniverse.domain.models.Film
-import com.css101.starwarsuniverse.domain.models.Person
+import com.css101.starwarsuniverse.domain.models.Character
 import com.css101.starwarsuniverse.domain.usecases.GetCharacterFromServerUseCase
 import com.css101.starwarsuniverse.domain.usecases.GetCharacterFromStorageUseCase
 import com.css101.starwarsuniverse.domain.usecases.GetMovieByIdUseCase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class DetailsViewModel(
@@ -18,13 +19,13 @@ class DetailsViewModel(
     private val getMovieByIdUseCase: GetMovieByIdUseCase
 ) : ViewModel() {
 
-    private val _characters = MutableLiveData<List<Person>>()
-    val characters: LiveData<List<Person>> = _characters
+    private val _characters = MutableLiveData<List<Character>>()
+    val characters: LiveData<List<Character>> = _characters
 
     private val _movie = MutableLiveData<Film>()
     private val movie: LiveData<Film> = _movie
 
-    private fun getMovieDetails(movieId: Int): Film {
+    private suspend fun getMovieDetails(movieId: Int): Film {
         val movie = getMovieByIdUseCase.execute(movieId)
         _movie.postValue(movie)
         return movie
@@ -35,9 +36,12 @@ class DetailsViewModel(
 
         viewModelScope.launch(Dispatchers.IO) {
             val movie = movie.value ?: getMovieDetails(movieId)
-            val characters = movie.characters.mapNotNull { url ->
-                getCharacterFromStorageUseCase.execute(url) ?: getCharacterFromServerUseCase.execute(url)
+            val characterDeferred = movie.characters.map { url ->
+                async {
+                    getCharacterFromStorageUseCase.execute(url) ?: getCharacterFromServerUseCase.execute(url)
+                }
             }
+            val characters = characterDeferred.mapNotNull { it.await() }
             _characters.postValue(characters)
         }
     }

@@ -10,10 +10,10 @@ data class MoviesData(
     @JsonProperty("previous")
     val previous: String?,
     @JsonProperty("results")
-    val results: List<Film>
+    val results: List<FilmData>
 )
 
-data class Film(
+data class FilmData(
     @JsonProperty("title")
     val title: String,
     @JsonProperty("episode_id")

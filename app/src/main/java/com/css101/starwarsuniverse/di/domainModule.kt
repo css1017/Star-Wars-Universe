@@ -10,11 +10,11 @@ import com.css101.starwarsuniverse.domain.usecases.GetPlanetFromStorageUseCase
 import org.koin.dsl.module
 
 val domainModule = module {
-    factory { GetMoviesFromServerUseCase() }
-    factory { GetMoviesFromStorageUseCase() }
-    factory { GetMovieByIdUseCase() }
-    factory { GetPlanetFromServerUseCase() }
-    factory { GetPlanetFromStorageUseCase() }
-    factory { GetCharacterFromStorageUseCase() }
-    factory { GetCharacterFromServerUseCase() }
+    factory { GetMoviesFromServerUseCase(swapiRepo = get()) }
+    factory { GetMoviesFromStorageUseCase() }  //storageRepo = get()
+    factory { GetMovieByIdUseCase() } //storageRepo = get()
+    factory { GetPlanetFromServerUseCase(swapiRepo = get()) }
+    factory { GetPlanetFromStorageUseCase() } //storageRepo = get()
+    factory { GetCharacterFromStorageUseCase() } //storageRepo = get()
+    factory { GetCharacterFromServerUseCase(swapiRepo = get()) }
 }

@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.css101.starwarsuniverse.databinding.ItemCharactersBinding
-import com.css101.starwarsuniverse.domain.models.Person
+import com.css101.starwarsuniverse.domain.models.Character
 
 class CharactersAdapter(
-    private val items: List<Person>,
-    private var onItemClick: ((Person) -> Unit),
+    private val items: List<Character>,
+    private var onItemClick: ((Character) -> Unit),
 ) : RecyclerView.Adapter<CharactersViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersViewHolder {

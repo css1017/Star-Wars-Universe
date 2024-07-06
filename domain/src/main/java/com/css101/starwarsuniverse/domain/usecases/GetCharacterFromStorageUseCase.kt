@@ -1,9 +1,11 @@
 package com.css101.starwarsuniverse.domain.usecases
 
-import com.css101.starwarsuniverse.domain.models.Person
+import com.css101.starwarsuniverse.domain.models.Character
+import com.css101.starwarsuniverse.domain.repository.StorageRepo
 
-class GetCharacterFromStorageUseCase {
-    fun execute(character: String): Person? {
-        return null
+class GetCharacterFromStorageUseCase(){//private val storageRepo: StorageRepo) {
+
+    suspend fun execute(character: String): Character? {
+        return null//storageRepo.getCharacterFromStorage(character)
     }
 }
