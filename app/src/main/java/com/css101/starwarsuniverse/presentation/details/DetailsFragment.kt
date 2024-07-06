@@ -10,7 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.css101.starwarsuniverse.databinding.FragmentMovieDetailsBinding
-import com.css101.starwarsuniverse.domain.models.Person
+import com.css101.starwarsuniverse.domain.models.Character
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailsFragment : Fragment() {
@@ -48,7 +48,7 @@ class DetailsFragment : Fragment() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun setAdapter(movies: List<Person>) = with(binding) {
+    private fun setAdapter(movies: List<Character>) = with(binding) {
         rvCaracters.adapter = CharactersAdapter(movies) {
             val action = DetailsFragmentDirections.actionDetailsToPlanet(it.homeWorld)
             navController.navigate(action)
