@@ -19,29 +19,29 @@ class DetailsViewModel(
     private val getMovieByIdUseCase: GetMovieByIdUseCase
 ) : ViewModel() {
 
-    private val _characters = MutableLiveData<List<Character>>()
-    val characters: LiveData<List<Character>> = _characters
+    private val _characters = MutableLiveData<List<Character>?>()
+    val characters: LiveData<List<Character>?> = _characters
 
-    private val _movie = MutableLiveData<Film>()
-    private val movie: LiveData<Film> = _movie
+    private val _movie = MutableLiveData<Film?>()
+    val movie: LiveData<Film?> = _movie
 
-    private suspend fun getMovieDetails(movieId: Int): Film {
-        val movie = getMovieByIdUseCase.execute(movieId)
+    private suspend fun getMovieDetails(url: String): Film? {
+        val movie = getMovieByIdUseCase.execute(url)
         _movie.postValue(movie)
         return movie
     }
 
-    fun getCharacters(movieId: Int) {
+    fun getCharacters(url: String) {
         _characters.value?.let { return }
 
         viewModelScope.launch(Dispatchers.IO) {
-            val movie = movie.value ?: getMovieDetails(movieId)
-            val characterDeferred = movie.characters.map { url ->
+            val movie = movie.value ?: getMovieDetails(url)
+            val characterDeferred = movie?.characters?.map { url ->
                 async {
                     getCharacterFromStorageUseCase.execute(url) ?: getCharacterFromServerUseCase.execute(url)
                 }
             }
-            val characters = characterDeferred.mapNotNull { it.await() }
+            val characters = characterDeferred?.mapNotNull { it.await() }
             _characters.postValue(characters)
         }
     }

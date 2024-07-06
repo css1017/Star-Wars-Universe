@@ -1,4 +1,4 @@
-package com.css101.starwarsuniverse.data.storage.retrofitStorage
+package com.css101.starwarsuniverse.data.storage.retrofit
 
 
 import com.css101.starwarsuniverse.data.models.CharacterData

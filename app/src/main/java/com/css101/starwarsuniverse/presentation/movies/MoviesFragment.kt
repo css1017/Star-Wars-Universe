@@ -46,7 +46,7 @@ class MoviesFragment : Fragment() {
     @SuppressLint("NotifyDataSetChanged")
     private fun setAdapter(movies: List<Film>) = with(binding) {
         rvMovies.adapter = MoviesAdapter(movies) {
-            val action = MoviesFragmentDirections.actionMoviesToDetails(it.episodeId)
+            val action = MoviesFragmentDirections.actionMoviesToDetails(it.url)
             navController.navigate(action)
         }
         rvMovies.adapter?.notifyDataSetChanged()

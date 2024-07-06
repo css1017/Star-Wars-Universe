@@ -11,10 +11,10 @@ import org.koin.dsl.module
 
 val domainModule = module {
     factory { GetMoviesFromServerUseCase(swapiRepo = get()) }
-    factory { GetMoviesFromStorageUseCase() }  //storageRepo = get()
-    factory { GetMovieByIdUseCase() } //storageRepo = get()
+    factory { GetMoviesFromStorageUseCase(storageRepo = get()) }
+    factory { GetMovieByIdUseCase(storageRepo = get()) }
     factory { GetPlanetFromServerUseCase(swapiRepo = get()) }
-    factory { GetPlanetFromStorageUseCase() } //storageRepo = get()
-    factory { GetCharacterFromStorageUseCase() } //storageRepo = get()
+    factory { GetPlanetFromStorageUseCase(storageRepo = get()) }
+    factory { GetCharacterFromStorageUseCase(storageRepo = get()) }
     factory { GetCharacterFromServerUseCase(swapiRepo = get()) }
 }

@@ -34,11 +34,17 @@ class DetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = findNavController()
         vm.getCharacters(args.episodeId)
+        vm.movie.observe(viewLifecycleOwner){
+            binding.tvTitlePerson.text = it?.title ?: ""
+
+        }
         showLoading()
-        binding.tvTitlePerson.text = args.episodeId.toString()
         vm.characters.observe(viewLifecycleOwner) {
-            if (it.isEmpty()) showError() else hideLoading()
-            setAdapter(it)
+            if (it.isNullOrEmpty()) showError() else {
+                hideLoading()
+                setAdapter(it)
+            }
+
         }
     }
 

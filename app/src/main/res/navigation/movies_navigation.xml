@@ -19,7 +19,7 @@
         </action>
         <argument
             android:name="episodeId"
-            app:argType="integer" />
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/navigation_planet"

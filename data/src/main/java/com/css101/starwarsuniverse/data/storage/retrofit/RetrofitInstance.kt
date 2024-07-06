@@ -1,4 +1,4 @@
-package com.css101.starwarsuniverse.data.storage.retrofitStorage
+package com.css101.starwarsuniverse.data.storage.retrofit
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper

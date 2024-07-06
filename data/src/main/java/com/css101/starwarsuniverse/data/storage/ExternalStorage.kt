@@ -8,5 +8,4 @@ interface ExternalStorage {
     suspend fun getMoviesFromServer(): MoviesData?
     suspend fun getCharacterFromServer(character: String): CharacterData?
     suspend fun getPlanetFromServer(planet: String): PlanetData?
-
 }
