@@ -12,6 +12,4 @@ interface StorageRepo {
     suspend fun getMoviesFromStorage(): Movies?
     suspend fun getCharacterFromStorage(character: String): Character?
     suspend fun getPlanetFromStorage(planet: String): Planet?
-    suspend fun getMovieById(id: Int): Film
-
 }

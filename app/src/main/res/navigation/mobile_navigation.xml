@@ -16,7 +16,7 @@
             app:destination="@id/movies_navigation">
             <argument
                 android:name="episodeId"
-                app:argType="integer" />
+                app:argType="string" />
         </action>
     </fragment>
 

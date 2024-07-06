@@ -1,8 +1,12 @@
 package com.css101.starwarsuniverse.data.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.fasterxml.jackson.annotation.JsonProperty
 
+@Entity(tableName = "characters")
 data class CharacterData(
+
     @JsonProperty("name") val name: String,
     @JsonProperty("height") val height: String,
     @JsonProperty("mass") val mass: String,
@@ -18,5 +22,5 @@ data class CharacterData(
     @JsonProperty("starships") val starships: List<String>,
     @JsonProperty("created") val created: String,
     @JsonProperty("edited") val edited: String,
-    @JsonProperty("url") val url: String
+    @PrimaryKey @JsonProperty("url") val url: String
 )

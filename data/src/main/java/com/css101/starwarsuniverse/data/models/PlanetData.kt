@@ -1,7 +1,10 @@
 package com.css101.starwarsuniverse.data.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.fasterxml.jackson.annotation.JsonProperty
 
+@Entity(tableName = "planets")
 data class PlanetData(
     @JsonProperty("name") val name: String,
     @JsonProperty("rotation_period") val rotationPeriod: String,
@@ -16,5 +19,5 @@ data class PlanetData(
     @JsonProperty("films") val films: List<String>,
     @JsonProperty("created") val created: String,
     @JsonProperty("edited") val edited: String,
-    @JsonProperty("url") val url: String
+    @PrimaryKey @JsonProperty("url") val url: String
 )

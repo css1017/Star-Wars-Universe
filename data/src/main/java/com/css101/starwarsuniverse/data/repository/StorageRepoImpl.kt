@@ -16,10 +16,6 @@ class StorageRepoImpl(private val internalStorage: InternalStorage): StorageRepo
         return dataToMovie(internalStorage.getMoviesFromStorage())
     }
 
-    override suspend fun getMovieById(id: Int): Film {
-        return dataToFilm(internalStorage.getMovieById(id))
-    }
-
     override suspend fun saveMoviesToStorage(movies: Movies) {
         internalStorage.saveMoviesToStorage(movieToData(movies))
     }
@@ -39,6 +35,7 @@ class StorageRepoImpl(private val internalStorage: InternalStorage): StorageRepo
     }
 
     private fun movieToData(movie: Movies) = MoviesData(
+        id = 0,
         count = movie.count,
         next = movie.next,
         previous = movie.previous,

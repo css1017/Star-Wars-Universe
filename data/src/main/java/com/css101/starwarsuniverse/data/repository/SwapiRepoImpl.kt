@@ -5,6 +5,7 @@ import com.css101.starwarsuniverse.data.models.FilmData
 import com.css101.starwarsuniverse.data.models.MoviesData
 import com.css101.starwarsuniverse.data.models.PlanetData
 import com.css101.starwarsuniverse.data.storage.ExternalStorage
+import com.css101.starwarsuniverse.data.storage.InternalStorage
 import com.css101.starwarsuniverse.domain.models.Character
 import com.css101.starwarsuniverse.domain.models.Film
 import com.css101.starwarsuniverse.domain.models.Movies
@@ -13,24 +14,24 @@ import com.css101.starwarsuniverse.domain.repository.SwapiRepo
 
 class SwapiRepoImpl(
     private val externalStorage: ExternalStorage,
-    //private val internalStorage: InternalStorage
+    private val internalStorage: InternalStorage
 ) : SwapiRepo {
 
     override suspend fun getAndSaveMovies(): Movies? {
         val data = externalStorage.getMoviesFromServer()
-        //if (data != null) internalStorage.saveMoviesToStorage(data)
+        if (data != null) internalStorage.saveMoviesToStorage(data)
         return dataToMovie(data)
     }
 
     override suspend fun getAndSaveCharacter(character: String): Character? {
         val data = externalStorage.getCharacterFromServer(character)
-       //if (data != null) internalStorage.saveCharacterToStorage(data)
+        if (data != null) internalStorage.saveCharacterToStorage(data)
         return dataToCharacter(data)
     }
 
     override suspend fun getAndSavePlanet(planet: String): Planet? {
         val data = externalStorage.getPlanetFromServer(planet)
-        //if (data != null) internalStorage.savePlanetToStorage(data)
+        if (data != null) internalStorage.savePlanetToStorage(data)
         return dataToPlanet(data)
     }
 
