@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -31,6 +32,7 @@ class MoviesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = findNavController()
         vm.getMovies()
+        setSearch()
         showLoading()
         vm.movies.observe(viewLifecycleOwner) {
             if (it.isEmpty()) showError() else hideLoading()
@@ -66,5 +68,23 @@ class MoviesFragment : Fragment() {
     private fun showError() = with(binding) {
         pbLoadingMovies.visibility = View.GONE
         tvErrorMovies.visibility = View.VISIBLE
+    }
+
+    private fun setSearch() = with(binding) {
+        svMovies.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?) = false
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                val filteredMovies = if (!newText.isNullOrEmpty()) {
+                    vm.movies.value?.filter { movie ->
+                        movie.title.contains(newText, ignoreCase = true)
+                    }
+                } else {
+                    vm.movies.value
+                }
+                setAdapter(filteredMovies ?: emptyList())
+                return true
+            }
+        })
     }
 }

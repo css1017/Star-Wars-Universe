@@ -34,10 +34,10 @@ class DetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = findNavController()
         vm.getCharacters(args.episodeId)
-        vm.movie.observe(viewLifecycleOwner){
+        vm.movie.observe(viewLifecycleOwner) {
             binding.tvTitlePerson.text = it?.title ?: ""
-
         }
+        setButtons()
         showLoading()
         vm.characters.observe(viewLifecycleOwner) {
             if (it.isNullOrEmpty()) showError() else {
@@ -62,19 +62,25 @@ class DetailsFragment : Fragment() {
         rvCaracters.adapter?.notifyDataSetChanged()
     }
 
-    private fun showLoading() = with(binding) {
-//        pbLoadingMovies.visibility = View.VISIBLE
-//        tvErrorMovies.visibility = View.GONE
+    private fun setButtons() = with(binding) {
+        btnBackPerson.setOnClickListener { navController.popBackStack() }
+    }
 
+    private fun showLoading() = with(binding) {
+        rvCaracters.visibility = View.GONE
+        pbLoadingCharacters.visibility = View.VISIBLE
+        tvNoDataCharacters.visibility = View.GONE
     }
 
     private fun hideLoading() = with(binding) {
-//        pbLoadingMovies.visibility = View.GONE
-//        tvErrorMovies.visibility = View.GONE
+        rvCaracters.visibility = View.VISIBLE
+        pbLoadingCharacters.visibility = View.GONE
+        tvNoDataCharacters.visibility = View.GONE
     }
 
     private fun showError() = with(binding) {
-//        pbLoadingMovies.visibility = View.GONE
-//        tvErrorMovies.visibility = View.VISIBLE
+        rvCaracters.visibility = View.GONE
+        pbLoadingCharacters.visibility = View.GONE
+        tvNoDataCharacters.visibility = View.VISIBLE
     }
 }
