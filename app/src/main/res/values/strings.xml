@@ -13,4 +13,11 @@
     <string name="other">Прочее</string>
     <string name="planets">Планеты</string>
     <string name="info">Информация</string>
+    <string name="no_data">Нет данных</string>
+    <string name="enter_search_query">Введите запрос</string>
+    <string name="climate">Климат: %1$s</string>
+    <string name="population">Население: %1$s</string>
+    <string name="type">Тип местности: %1$s</string>
+    <string name="gravity">Гравитация: %1$s</string>
+    <string name="diameter">Диаметр: %1$s</string>
 </resources>

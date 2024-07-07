@@ -20,6 +20,7 @@
         android:id="@+id/tvErrorMovies"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:text="@string/recieve_error"
         tools:visibility="gone" />
 
@@ -35,7 +36,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:background="?attr/bg_element_1"
-            android:iconifiedByDefault="false" />
+            android:iconifiedByDefault="false"
+            android:queryHint="@string/enter_search_query" />
 
     </LinearLayout>
 

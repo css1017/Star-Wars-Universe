@@ -23,7 +23,7 @@ class MoviesViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             val localMovies = getMoviesFromStorageUseCase.execute()
             val data = localMovies ?: getMoviesFromServerUseCase.execute() ?: emptyList()
-            _movies.postValue(data)
+            _movies.postValue(data.sortedBy { it.episodeId })
         }
     }
 }
